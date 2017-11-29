@@ -182,7 +182,7 @@ class Vital(Base):
 
     vitalid = Column(String(300), primary_key=True)
     patid = Column(String(300), ForeignKey('demographic.patid'), index=True)
-    encounterid = Column(String(300), ForeignKey('encounter.encounterid'))
+    encounterid = Column(String(300))
     measure_date = Column(Date)
     measure_time = Column(String(15))
     vital_source = Column(String(6))
@@ -204,7 +204,6 @@ class Vital(Base):
     raw_encounterid = Column(String(150))
 
     demographic = relationship("Demographic", backref=backref('vital'))
-    encounter = relationship("Encounter", backref=backref('vital'))
 
     def __repr__(self):
         return "<Vital(vitalid=%s)>" % self.vitalid
@@ -232,7 +231,7 @@ class Lab_Result_CM(Base):
 
     lab_result_cm_id = Column(String(300), primary_key=True)
     patid = Column(String(300), ForeignKey('demographic.patid'), index=True)
-    encounterid = Column(String(300), ForeignKey('encounter.encounterid'))
+    encounterid = Column(String(300))
     lab_name = Column(String(30))
     specimen_source = Column(String(30))
     lab_loinc = Column(String(30))
@@ -275,7 +274,6 @@ class Lab_Result_CM(Base):
     raw_sedi_common_name = Column(String(300))
 
     demographic = relationship("Demographic", backref=backref('lab_result_cm'))
-    encounter = relationship("Encounter", backref=backref('lab_result_cm'))
 
     def __repr__(self):
         return "<Lab_Result_Cm(lab_result_cm_id=%s)>" % self.lab_result_cm_id
